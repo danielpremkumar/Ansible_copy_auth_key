@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+  - name: make direcotry
+    file:
+      path: "/home/daniel/.ssh"
+      mode: 0700
+      state: directory
+  - name: create empty file
+    file:
+      path: "/home/daniel/.ssh/authorized_keys"
+      mode: 0600
+      state: touch
+  - name: put pubkey
+    lineinfile:
+      path: "/home/daniel/.ssh/authorized_keys"
+      line: "{{ pubkey }}"
